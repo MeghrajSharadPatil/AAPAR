@@ -1,0 +1,1210 @@
+# PROJECT: APAAR SETU – AICTE STUDENT DATA MANAGEMENT & VERIFICATION PLATFORM
+
+Act as a senior full-stack software engineer, UI/UX designer, database architect, cybersecurity engineer and AI application developer.
+
+Build a complete, professional, modern, responsive and functional full-stack web application named:
+
+**APAAR SETU**
+**Tagline: One ID. One Seat. One Verified Truth.**
+
+This is a Smart India Hackathon 2026 project based on the problem statement:
+
+**SIH Problem Statement ID: SIH26263**
+
+Problem Statement Title:
+Development of an APAAR ID-based Student Data Management and Verification Platform for AICTE-Approved Institutions.
+
+The objective is to develop a centralized digital platform through which AICTE-approved institutions can upload, update, validate and monitor student-level admission information using APAAR ID as the unique academic identifier.
+
+The application must demonstrate how student records can be securely submitted by institutions, validated automatically, stored in a central repository, monitored by AICTE and verified by authorized stakeholders.
+
+IMPORTANT:
+Do not create only a static UI or landing page. Build a fully functional, interactive prototype with working navigation, dashboards, forms, data tables, validation logic, charts, role-based interfaces, QR generation and verification.
+
+The application must be suitable for demonstrating in front of Smart India Hackathon judges.
+
+---
+
+# 1. TECHNOLOGY STACK
+
+Use the following technologies:
+
+Frontend:
+- React.js with TypeScript.
+- Tailwind CSS.
+- Lucide React icons.
+- React Router for navigation.
+- Recharts for charts and analytics.
+
+Backend:
+- Node.js server-side runtime.
+- REST API architecture.
+- Secure server-side validation and business logic.
+
+Database:
+- Prefer Firebase Firestore if it can be provisioned in Google AI Studio.
+- Use Firebase Authentication where supported.
+- Keep database access modular so it can later be migrated to PostgreSQL.
+
+Security:
+- Role-based access control.
+- JWT or Firebase Authentication.
+- bcrypt password hashing where password authentication is implemented.
+- HMAC-SHA256 for privacy-preserving APAAR matching tokens.
+- Ed25519 digital signatures for QR credentials.
+- Secure server-side handling of keys and secrets.
+
+Other libraries:
+- QR code generation library.
+- CSV upload and parsing library.
+- CSV export functionality.
+- Date formatting library.
+
+Use the packages necessary for the implementation and install them automatically.
+
+If Firebase cannot be configured automatically, use a clearly separated demo persistence layer with browser storage and server-side validation. Keep the application operational without requiring external credentials.
+
+Do not expose API keys, signing keys, passwords or secret tokens in frontend code.
+
+---
+
+# 2. UI/UX DESIGN REQUIREMENTS
+
+The website must have a very professional, attractive and clean LIGHT THEME.
+
+Design inspiration:
+- Modern government digital portals.
+- Enterprise SaaS dashboards.
+- Modern banking dashboards.
+- Professional university management platforms.
+
+DESIGN STYLE:
+
+- White and very light grey backgrounds.
+- Primary colour: Navy Blue.
+- Secondary colour: Royal Blue.
+- Accent colour: Teal.
+- Green for successful verification.
+- Orange for warnings.
+- Red for errors and critical alerts.
+- Soft shadows.
+- Rounded cards.
+- Subtle borders.
+- Clean typography.
+- Use Inter or a similar modern font.
+
+DO NOT USE:
+- Dark theme.
+- Black-heavy backgrounds.
+- Excessive gradients.
+- Too many animations.
+- Crowded layouts.
+- Tiny text.
+- Unnecessary decorative elements.
+
+LAYOUT:
+
+Desktop:
+- Collapsible left sidebar.
+- Top navigation bar.
+- Main dashboard content.
+- Responsive cards and tables.
+
+Mobile:
+- Responsive sidebar or hamburger menu.
+- Stacked dashboard cards.
+- Scrollable tables.
+- Easy-to-use forms.
+
+GENERAL UI:
+- Create a professional APAAR Setu logo using a suitable education, identity or verification icon.
+- Show the application name and tagline in the sidebar.
+- Show the logged-in user's name and role in the top bar.
+- Add notification icon.
+- Add profile menu.
+- Add breadcrumbs.
+- Add clear page titles and subtitles.
+- Add tooltips for technical terms.
+- Provide empty states, loading indicators, success messages and error messages.
+- Use confirmation dialogs for sensitive actions.
+
+All navigation buttons, dropdowns, forms, cards and action buttons must work.
+
+Make the application beginner-friendly so that a non-technical college administrator can use it without training.
+
+---
+
+# 3. USER ROLES AND ACCESS CONTROL
+
+Create four separate user roles.
+
+## A. AICTE ADMIN
+
+This user can:
+- View all registered institutions.
+- View total student enrolment.
+- Monitor admission data.
+- Monitor approved intake.
+- See duplicate student alerts.
+- See invalid or missing APAAR records.
+- View over-admission alerts.
+- Review suspicious records.
+- Generate reports.
+- View audit logs.
+- Manage institutions and programme information.
+
+## B. INSTITUTE ADMIN
+
+This user can:
+- View their institution dashboard.
+- Upload student records.
+- Add new student records.
+- Update student information.
+- View registered students.
+- Monitor approved intake.
+- Monitor actual enrolment.
+- See available seats.
+- View supernumerary seat information.
+- Review validation errors.
+- Resolve data inconsistencies.
+- Generate student reports.
+- Generate student verification credentials.
+
+An institution must only be allowed to access its own records.
+
+## C. STUDENT
+
+This user can:
+- View their student profile.
+- View their APAAR ID status.
+- View institution and programme information.
+- View admission details.
+- View generated student credentials.
+- View their QR code.
+- Give consent to authorized verification requests.
+- Revoke consent.
+- View their verification history.
+
+## D. EMPLOYER / AUTHORIZED VERIFIER
+
+This user can:
+- Enter a student credential ID.
+- Scan or upload a QR code.
+- Verify digitally signed student credentials.
+- Check whether the credential is valid.
+- View only permitted information.
+- View the institution and programme information.
+- View verification status.
+
+The verifier must not have access to the full student database.
+
+Implement server-side role and institution-level authorization. Hiding a button in the frontend is not sufficient security.
+
+---
+
+# 4. LOGIN PAGE
+
+Create a professional login page.
+
+Page title:
+
+"Welcome to APAAR Setu"
+
+Subtitle:
+
+"Secure Academic Identity and Student Record Verification Platform"
+
+Login fields:
+- Email address.
+- Password.
+- Show/hide password.
+- Remember me.
+- Forgot password.
+- Login button.
+
+Provide a demo login section with four clearly labelled buttons:
+
+1. Login as AICTE Admin.
+2. Login as Institute Admin.
+3. Login as Student.
+4. Login as Employer / Verifier.
+
+Use seeded demo accounts or a safe demo-role switching mechanism so judges can immediately explore all four portals.
+
+Clearly label this as DEMO ACCESS.
+
+After login, redirect each user to the appropriate dashboard.
+
+---
+
+# 5. AICTE ADMIN DASHBOARD
+
+This is the main dashboard of the entire platform.
+
+Title:
+"AICTE Central Monitoring Dashboard"
+
+Subtitle:
+"Monitor institutions, admissions, academic identities and student verification."
+
+At the top, create six statistics cards:
+
+1. Total Institutions.
+2. Total Approved Intake.
+3. Total Student Enrolment.
+4. Total Supernumerary Seats.
+5. Duplicate Records Detected.
+6. Pending Validation Records.
+
+Use realistic synthetic demo data.
+
+Add the following charts:
+
+A. Student Enrolment Overview:
+- Bar chart showing student enrolment across academic years.
+
+B. Institution-wise Enrolment:
+- Bar chart showing enrolment across institutions.
+
+C. Admission Status:
+- Donut chart showing verified, pending and flagged student records.
+
+D. Seat Utilization:
+- Show approved intake, occupied seats and remaining seats.
+
+Add a section named:
+
+"Recent Alerts"
+
+Show alerts such as:
+- Duplicate APAAR match detected.
+- Admission exceeding approved intake.
+- Missing APAAR ID.
+- Institution submission pending.
+- Student information mismatch.
+
+Each alert must have:
+- Alert type.
+- Institution name.
+- Programme.
+- Date and time.
+- Severity.
+- View Details button.
+
+Add a section named:
+
+"Top Performing Institutions"
+
+Show an institution table containing:
+- Institution name.
+- Institution code.
+- Approved intake.
+- Actual enrolment.
+- Seat utilization.
+- Verified records.
+- Integrity status.
+
+Include search, filters and pagination.
+
+---
+
+# 6. INSTITUTE DASHBOARD
+
+Title:
+"Institution Dashboard"
+
+Show institution-specific statistics:
+
+- Approved Intake.
+- Actual Student Enrolment.
+- Supernumerary Seats.
+- Available Seats.
+- Verified APAAR Records.
+- Pending Records.
+- Flagged Records.
+
+Add a seat utilization progress bar.
+
+Add quick action buttons:
+
+1. Add Student.
+2. Upload CSV.
+3. View Students.
+4. Check Duplicate Records.
+5. Generate Reports.
+
+Create a recent student registration table.
+
+Columns:
+- Student ID.
+- Student Name.
+- APAAR ID (masked).
+- Programme.
+- Academic Year.
+- Category.
+- APAAR Validation Status.
+- Admission Status.
+- Action.
+
+Allow institute admins to:
+- Search students.
+- Filter by programme.
+- Filter by academic year.
+- Filter by validation status.
+- Edit permitted student details.
+- View detailed student profiles.
+
+---
+
+# 7. STUDENT DATA MANAGEMENT MODULE
+
+Create a complete student registration form.
+
+Fields:
+
+PERSONAL INFORMATION:
+- Student Full Name.
+- Student ID / Enrollment Number.
+- APAAR ID.
+- Date of Birth.
+- Gender, if required for the demo.
+
+ACADEMIC INFORMATION:
+- Institution.
+- Institution Code.
+- Programme / Course.
+- Department.
+- Academic Year.
+- Admission Date.
+- Admission Status.
+
+ADMISSION CATEGORY:
+- General / Regular.
+- NRI.
+- OCI.
+- Foreign National (FN).
+- Other categories where configured.
+
+SEAT INFORMATION:
+- Approved Intake.
+- Supernumerary Seat.
+- Admission Category.
+
+APAAR INFORMATION:
+- APAAR ID.
+- APAAR Validation Status.
+- Validation Date.
+- Verification Reference.
+
+Create clear validation messages.
+
+The form must not save incomplete or invalid information as a fully verified record.
+
+Provide options:
+- Save Student.
+- Save as Draft.
+- Cancel.
+- Reset Form.
+
+Keep APAAR information masked in normal tables and screens.
+
+Use only fictional demo information.
+
+---
+
+# 8. CSV BULK UPLOAD MODULE
+
+Create an excellent CSV upload interface.
+
+Title:
+"Bulk Student Data Upload"
+
+Features:
+- Drag-and-drop CSV upload.
+- Browse Files button.
+- Download Sample CSV button.
+- Upload Instructions.
+- Supported fields explanation.
+- Preview uploaded records.
+- Validate Records button.
+- Upload Records button.
+
+After selecting a CSV:
+1. Display the total number of rows.
+2. Display valid records.
+3. Display invalid records.
+4. Display duplicate records.
+5. Display missing APAAR IDs.
+6. Display seat-related warnings.
+
+Show a row-by-row preview table with validation results.
+
+Allow the user to:
+- Download error report.
+- Correct invalid information.
+- Revalidate the file.
+- Confirm the upload.
+
+Do not silently ignore invalid rows.
+
+Use sample CSV data containing both valid and invalid records.
+
+---
+
+# 9. AUTOMATED APAAR VALIDATION ENGINE
+
+Create an independent module called:
+
+"APAAR Validation Engine"
+
+It must detect:
+
+1. Missing APAAR ID.
+2. Incorrect configured demo format.
+3. Duplicate APAAR matching token.
+4. Duplicate student record within an institution.
+5. Potential duplicate enrolment across institutions.
+6. Inconsistent academic information.
+7. Invalid admission data.
+
+IMPORTANT:
+
+Use server-side HMAC-SHA256 for privacy-preserving matching of synthetic APAAR identifiers.
+
+Never expose the HMAC secret or matching tokens to the browser.
+
+For the prototype, implement configurable format checks and synthetic validation responses.
+
+Do not claim that a format check confirms authenticity of a real APAAR ID.
+
+Support these statuses:
+- Verified (Demo).
+- Pending Verification.
+- Invalid Format.
+- Missing APAAR ID.
+- Duplicate Detected.
+- Flagged for Review.
+
+Provide a detailed validation result page with:
+- Student details.
+- Validation status.
+- Reason for failure.
+- Institution.
+- Date.
+- Recommended correction.
+
+Missing or invalid records should be placed into an exception queue rather than silently deleted.
+
+Allow authorized institution admins to correct records and resubmit them.
+
+---
+
+# 10. DUPLICATE SHIELD MODULE
+
+This is one of the most important features.
+
+Create a professional page named:
+
+"Duplicate Shield"
+
+Purpose:
+Detect students registered in more than one institution using their academic identity.
+
+Use privacy-preserving matching.
+
+Example:
+
+Institution A:
+Student Name: Rahul Sharma
+APAAR Demo ID: 123456789012
+
+Institution B:
+Student Name: Rahul Sharma
+APAAR Demo ID: 123456789012
+
+The application should detect matching identifiers and flag a potential duplicate enrolment.
+
+Show:
+- Duplicate Reference ID.
+- Student ID.
+- Masked APAAR ID.
+- Institution A.
+- Institution B.
+- Programme.
+- Academic Year.
+- Detection Date.
+- Risk Level.
+- Review Status.
+
+Create three categories:
+- Exact Identity Match.
+- Possible Duplicate.
+- Manual Review Required.
+
+Add a detailed comparison screen.
+
+Provide actions:
+- View Records.
+- Mark as Reviewed.
+- Resolve Duplicate.
+- Escalate to AICTE.
+- Add Review Notes.
+
+IMPORTANT:
+A matching identifier should create a warning, not automatically prove fraud. Allow legitimate transfer, correction and other genuine cases to be reviewed.
+
+Add an audit entry for every resolution.
+
+---
+
+# 11. LIVE SEAT LEDGER
+
+Create a visually attractive module:
+
+"Live Seat Ledger"
+
+Show:
+- Approved Intake.
+- Actual Student Enrolment.
+- Supernumerary Seats.
+- Total Authorized Capacity.
+- Available Seats.
+- Excess Admission Alerts.
+
+Use separate counters for:
+- Approved Intake.
+- Regular Enrolments.
+- Supernumerary Enrolments.
+
+Make actual enrolment automatically calculate from the admission records rather than relying on manually entered totals.
+
+For the demonstration, use a configurable capacity rule:
+
+Total Authorized Capacity = Approved Intake + Configured Supernumerary Seats.
+
+Display regular intake and supernumerary seats separately.
+
+Do not invent official seat-allocation or NRI/OCI/FN quota policies. Make any category-specific policy configurable.
+
+Example:
+
+Institution: ABC Engineering College
+Programme: Computer Engineering
+Approved Intake: 60
+Actual Regular Enrolment: 60
+Supernumerary Seats: 5
+Supernumerary Enrolment: 2
+
+Show:
+Regular intake status: FULL.
+Supernumerary occupancy: 2/5.
+Total occupancy: 62/65.
+Available authorized capacity: 3.
+
+When the next admission attempt exceeds the configured capacity:
+- Generate an alert.
+- Show a warning.
+- Flag the admission for authorized review.
+- Do not silently accept the excess admission.
+
+Add a programme-wise table and a visual seat utilization chart.
+
+---
+
+# 12. AI-POWERED ANOMALY DETECTION
+
+Create a module called:
+
+"AI Admission Intelligence"
+
+The objective is to identify suspicious patterns in student admission data.
+
+Implement the following anomaly checks:
+
+1. Sudden unusual increases in admission numbers.
+2. Multiple registrations with the same identity token.
+3. Repeated incomplete student records.
+4. Admission beyond configured intake.
+5. Unusual concentration of admission entries on a single date.
+6. Repeated inconsistencies across uploaded records.
+
+First implement deterministic rules so the prototype works without an external AI key.
+
+Optionally use Gemini through the secure server-side API to summarize anonymized anomaly patterns and explain why a record needs review.
+
+AI should provide:
+- Anomaly type.
+- Risk level.
+- Explanation.
+- Affected institution.
+- Suggested investigation steps.
+
+Display:
+- Low Risk.
+- Medium Risk.
+- High Risk.
+
+Do not automatically reject students or accuse institutions of fraud based on AI output.
+
+Human administrator review must be required for sensitive decisions.
+
+Do not send raw APAAR IDs or unnecessary personal data to Gemini.
+
+---
+
+# 13. STUDENT PORTAL
+
+Create a student-friendly dashboard.
+
+Title:
+"My Academic Identity"
+
+Show:
+- Student Name.
+- Student ID.
+- Masked APAAR ID.
+- Institution.
+- Programme.
+- Academic Year.
+- Admission Status.
+- APAAR Validation Status.
+
+Create the following sections:
+
+A. My Academic Profile.
+
+B. My Enrolment Record.
+
+C. My Digital Credential.
+
+D. My QR Code.
+
+E. Verification Requests.
+
+F. Consent Management.
+
+STUDENT CONSENT FEATURE:
+
+When an employer or authorized verifier requests information, display:
+- Verifier Name.
+- Organisation.
+- Purpose of Verification.
+- Requested Information.
+- Date.
+- Expiry.
+
+Provide:
+- Approve Consent.
+- Reject Request.
+- Revoke Consent.
+
+Record every consent action in the audit trail.
+
+Do not expose complete student information without proper authorization and consent where required.
+
+---
+
+# 14. DIGITAL STUDENT CREDENTIAL & QR VERIFICATION
+
+Create two modules:
+
+A. Credential Generation.
+B. Credential Verification.
+
+CREDENTIAL GENERATION:
+
+Generate a digital student credential containing permitted information:
+
+- Credential ID.
+- Student ID.
+- Student Name, where authorized.
+- Institution.
+- Programme.
+- Academic Year.
+- APAAR reference.
+- Issue Date.
+- Expiry Date.
+- Credential Status.
+
+Generate a QR code linked to a digitally signed credential.
+
+Use Ed25519 digital signatures.
+
+Keep the private signing key on the server.
+
+Provide a certificate preview with:
+
+APAAR SETU – VERIFIED STUDENT CREDENTIAL
+
+Student Name: Rahul Sharma
+Student ID: 221901
+APAAR ID: 123456789012 (SYNTHETIC DEMO ID)
+Institution: ABC Engineering College
+Programme: Computer Science and Engineering
+Academic Year: 2026–27
+
+Add QR code on the right side.
+
+Include:
+
+"Digitally signed demo credential. This prototype is not an official AICTE certificate."
+
+Add Print Certificate and Download buttons.
+
+QR VERIFICATION:
+
+Create a page where employers can:
+- Scan the QR code with the camera if browser permissions are available.
+- Upload a QR image.
+- Enter a credential ID manually.
+
+After verification show:
+- Valid Credential.
+- Invalid Signature.
+- Expired Credential.
+- Revoked Credential.
+- Consent Required.
+
+Support online credential status and revocation checks.
+
+For offline verification, verify the digital signature using the public key and clearly explain that current revocation status and consent cannot be confirmed offline.
+
+The QR verification screen must look professional.
+
+---
+
+# 15. CENTRAL AICTE STUDENT REPOSITORY
+
+Create a centralized database view.
+
+Page title:
+"Central Student Repository"
+
+AICTE administrators can search and filter records across institutions.
+
+Provide:
+- Student ID.
+- Masked APAAR ID.
+- Institution.
+- Programme.
+- Academic Year.
+- Admission Status.
+- Validation Status.
+- Verification Status.
+
+Features:
+- Global search.
+- Institution filter.
+- Programme filter.
+- Academic Year filter.
+- Status filter.
+- Pagination.
+- Export CSV.
+
+Institute admins must not access the entire national repository.
+
+---
+
+# 16. INSTITUTION MANAGEMENT
+
+Create an AICTE admin page called:
+
+"Institution Directory"
+
+Display:
+- Institution Name.
+- Institution Code.
+- State.
+- District.
+- Institution Type.
+- Approval Status.
+- Number of Programmes.
+- Approved Intake.
+- Actual Enrolment.
+- Data Submission Status.
+
+Add:
+- Add Institution.
+- Edit Institution.
+- View Details.
+- Search.
+- Filter.
+- Pagination.
+
+Create programme management with:
+- Programme Name.
+- Institution.
+- Approved Intake.
+- Supernumerary Seat Configuration.
+- Academic Year.
+- Approval Status.
+
+---
+
+# 17. REPORTS AND ANALYTICS
+
+Create a page named:
+
+"Reports & Analytics"
+
+Provide the following reports:
+
+1. Institution-wise Student Enrolment.
+2. Programme-wise Enrolment.
+3. Approved Intake vs Actual Enrolment.
+4. Supernumerary Seat Utilization.
+5. APAAR Validation Report.
+6. Duplicate Enrolment Report.
+7. NRI / OCI / FN Student Report.
+8. Academic Year-wise Admission Report.
+9. Institution Data Submission Report.
+10. AI Anomaly Detection Report.
+
+Features:
+- Date range filter.
+- Academic Year filter.
+- Institution filter.
+- Programme filter.
+- Category filter.
+- Download CSV.
+- Printable report.
+
+Show interactive charts and easy-to-understand statistics.
+
+Do not show invented statistics as official AICTE figures. All demo analytics must be clearly labelled as synthetic sample data.
+
+---
+
+# 18. AUDIT LOGS AND SECURITY
+
+Create an "Audit Logs" page.
+
+Maintain records of:
+- User login.
+- Student registration.
+- Student record updates.
+- CSV uploads.
+- Duplicate detection.
+- Duplicate resolution.
+- Consent approval.
+- Consent revocation.
+- Credential generation.
+- Credential verification.
+- Administrative actions.
+
+Each record must include:
+- Action ID.
+- User.
+- Role.
+- Action.
+- Entity Reference.
+- Timestamp.
+- Action Status.
+
+Do not put full APAAR IDs or passwords into audit logs.
+
+SECURITY REQUIREMENTS:
+
+- Role-based access.
+- Institution-level data isolation.
+- Input validation.
+- Secure API authorization.
+- HMAC-based identity matching.
+- Digital signature verification.
+- Protected signing keys.
+- Consent tracking.
+- Audit trail.
+- Secure error handling.
+
+Clearly state that this is a hackathon demonstration prototype and not a production-certified government system.
+
+---
+
+# 19. API AND EXTERNAL INTEGRATION MODULE
+
+Create a page named:
+
+"System Integrations"
+
+Display integration cards for:
+
+1. AICTE Portal.
+2. APAAR System.
+3. Academic Bank of Credits (ABC).
+4. DigiLocker.
+5. Institutional ERP Systems.
+
+For each integration display:
+- System Name.
+- Purpose.
+- Connection Status.
+- Integration Type.
+- Last Synchronization.
+- Configure Button.
+
+IMPORTANT:
+
+Do not fabricate real government API access, authentication or connectivity.
+
+Build modular API adapter interfaces and simulated sandbox connectors for demonstration purposes.
+
+Use clearly labelled statuses:
+- Demo Connector.
+- Pending Authorization.
+- Not Connected.
+- Connected to Sandbox.
+
+Provide an integration documentation section explaining the API structure for future authorized integration.
+
+---
+
+# 20. DATA FLOW AND SYSTEM ARCHITECTURE
+
+Implement the system according to this process:
+
+Institution Login
+       ↓
+Student Data Upload
+       ↓
+APAAR Validation
+       ↓
+Duplicate Detection
+       ↓
+Seat Capacity Validation
+       ↓
+Data Quality Check
+       ↓
+Central Student Repository
+       ↓
+AICTE Monitoring Dashboard
+       ↓
+Analytics and Reports
+       ↓
+Student Consent
+       ↓
+Authorized Verification
+
+Create a dedicated Architecture page with a clean visual flowchart showing:
+
+- Institution Portal.
+- API Gateway.
+- Authentication Layer.
+- Validation Engine.
+- Duplicate Shield.
+- Live Seat Ledger.
+- Central Repository.
+- AI Anomaly Detection.
+- AICTE Dashboard.
+- Student Portal.
+- Employer Verification Portal.
+
+Make the diagram easy to understand.
+
+---
+
+# 21. DEMO DATA AND DEMONSTRATION SCENARIOS
+
+The application must not open with an empty dashboard.
+
+Create realistic SYNTHETIC demo data:
+
+- 6 fictional AICTE-approved institutions.
+- 10 fictional programmes.
+- 40–50 fictional student records.
+- Multiple academic years.
+- Different admission categories.
+- Valid and missing APAAR IDs.
+- Duplicate identities across two institutions.
+- Records with inconsistent information.
+- At least one programme where the approved intake is full.
+- At least one over-admission attempt.
+- Pending verification requests.
+- Example audit events.
+
+All demo student names, institutions, IDs and records must be fictional.
+
+Create a "Reset Demo Data" option for administrators.
+
+DEMO TEST CASES:
+
+TEST 1 – DUPLICATE STUDENT:
+Register a synthetic student in College A.
+Register the same synthetic APAAR identity in College B.
+The system should detect and flag the potential duplicate.
+
+TEST 2 – EXCESS ADMISSION:
+Set approved intake to 60.
+Register 60 regular admissions.
+Attempt another regular admission.
+The system should flag the attempt as exceeding approved intake.
+
+TEST 3 – MISSING APAAR:
+Submit a student without an APAAR ID.
+The system should place the record in the exception queue.
+
+TEST 4 – INVALID CREDENTIAL:
+Modify an existing QR credential payload.
+The system should detect an invalid digital signature.
+
+TEST 5 – CONSENT:
+Request student verification as an employer.
+The student must approve the request before protected information is disclosed.
+
+TEST 6 – SEAT UTILIZATION:
+Show regular intake and supernumerary seat occupancy separately.
+
+TEST 7 – DATA INCONSISTENCY:
+Upload records with missing programme or mismatched institution information.
+Display clear row-level errors.
+
+All tests must be executable through the user interface.
+
+---
+
+# 22. NAVIGATION STRUCTURE
+
+Create the following sidebar navigation.
+
+AICTE ADMIN:
+- Dashboard
+- Institution Directory
+- Central Student Repository
+- Admission Monitoring
+- Duplicate Shield
+- Seat Ledger
+- APAAR Validation
+- AI Intelligence
+- Credential Verification
+- Reports & Analytics
+- Audit Logs
+- System Integrations
+- Settings
+
+INSTITUTE ADMIN:
+- Dashboard
+- Student Management
+- Bulk Upload
+- Admission Monitoring
+- Duplicate Shield
+- Seat Ledger
+- APAAR Validation
+- Credential Generation
+- Reports
+- Settings
+
+STUDENT:
+- My Dashboard
+- My Academic Profile
+- My Credential
+- My QR Code
+- Consent Management
+- Verification History
+- Settings
+
+EMPLOYER / VERIFIER:
+- Dashboard
+- Verify Credential
+- Scan QR
+- Verification History
+- Settings
+
+Only show authorized navigation options for each role.
+
+---
+
+# 23. FUNCTIONALITY AND CODE QUALITY
+
+This is extremely important.
+
+DO NOT:
+- Generate only a landing page.
+- Create buttons that do nothing.
+- Create charts with no data.
+- Use non-functional navigation.
+- Use fake success messages when an operation failed.
+- Hardcode statistics that do not update after records are changed.
+- Claim that real APAAR or AICTE integrations exist.
+- Leave important sections as "Coming Soon".
+
+MUST:
+- Implement all important forms.
+- Implement actual validation logic.
+- Connect UI to application data.
+- Make data update dynamically.
+- Implement working filters and search.
+- Implement CSV upload and export.
+- Make QR generation functional.
+- Make digital signature verification functional.
+- Implement consent workflows.
+- Make charts reflect the underlying data.
+- Handle empty states and errors.
+- Ensure responsive design.
+- Keep code modular and readable.
+- Add comments explaining important logic.
+- Keep the project easy for beginner developers to understand.
+
+Create a README explaining:
+- Project overview.
+- Technology stack.
+- Folder structure.
+- How to run the application.
+- Demo login instructions.
+- Demo scenarios.
+- Database schema.
+- API endpoints.
+- Security limitations.
+- Future real government integration requirements.
+
+---
+
+# 24. FINAL QUALITY REQUIREMENTS
+
+Before considering the app complete:
+
+1. Run the application.
+2. Fix compilation errors.
+3. Fix runtime errors.
+4. Check every route.
+5. Test every navigation item.
+6. Test login for all roles.
+7. Test student registration.
+8. Test bulk CSV uploads.
+9. Test duplicate detection.
+10. Test seat limit validation.
+11. Test QR generation and verification.
+12. Test consent approval and revocation.
+13. Test reports and exports.
+14. Check mobile responsiveness.
+15. Verify that protected data is not exposed to unauthorized roles.
+
+Prioritize a fully working prototype over unnecessary advanced technologies.
+
+Make the application impressive but realistic enough for an SIH technical demonstration.
+
+---
+
+# FINAL DESIGN VISION
+
+The final application should look like an official, premium, enterprise-grade national academic data management portal.
+
+It should have:
+- A beautiful professional light theme.
+- Clear navigation.
+- Modern dashboards.
+- Attractive analytics.
+- Clean tables.
+- Smooth interactions.
+- Proper validation messages.
+- Easy-to-understand workflows.
+- Professional QR certificates.
+- Clear security indicators.
+
+The project name must always be:
+
+**APAAR SETU**
+
+The main tagline must always be:
+
+**ONE ID. ONE SEAT. ONE VERIFIED TRUTH.**
+
+Start building the complete application now. Make sensible technical decisions without asking me unnecessary questions. Implement the working application, not just a proposed design or a written explanation.

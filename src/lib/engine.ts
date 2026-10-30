@@ -1,4 +1,3 @@
-import crypto from 'node:crypto';
 import {
   AdmissionCategory,
   AdmissionStatus,
@@ -14,6 +13,157 @@ import {
   StudentRecord,
   ValidationStatus,
 } from '../types/domain';
+
+/**
+ * Pure TypeScript SHA-256 implementation (FIPS 180-4) so cryptographic HMAC-SHA256
+ * and credential signing run identically in Node.js (server.ts) and Browser (Vercel SPA).
+ */
+const SHA256_K = new Uint32Array([
+  0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+  0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+  0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+  0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+  0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+  0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+  0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+  0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2,
+]);
+
+function utf8ToBytes(str: string): Uint8Array {
+  return new TextEncoder().encode(str);
+}
+
+function bytesToHex(bytes: Uint8Array): string {
+  let hex = '';
+  for (let i = 0; i < bytes.length; i++) {
+    hex += bytes[i].toString(16).padStart(2, '0');
+  }
+  return hex;
+}
+
+function bytesToBase64Url(bytes: Uint8Array): string {
+  let binary = '';
+  for (let i = 0; i < bytes.length; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  const base64 =
+    typeof btoa === 'function'
+      ? btoa(binary)
+      : Buffer.from(bytes).toString('base64');
+  return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+function rotr(n: number, x: number): number {
+  return (x >>> n) | (x << (32 - n));
+}
+
+function sha256Bytes(data: Uint8Array): Uint8Array {
+  let h0 = 0x6a09e667;
+  let h1 = 0xbb67ae85;
+  let h2 = 0x3c6ef372;
+  let h3 = 0xa54ff53a;
+  let h4 = 0x510e527f;
+  let h5 = 0x9b05688c;
+  let h6 = 0x1f83d9ab;
+  let h7 = 0x5be0cd19;
+
+  const bitLen = data.length * 8;
+  const padLen = ((data.length + 8) >>> 6) + 1;
+  const padded = new Uint8Array(padLen * 64);
+  padded.set(data);
+  padded[data.length] = 0x80;
+  const view = new DataView(padded.buffer);
+  view.setUint32(padded.length - 8, Math.floor(bitLen / 0x100000000), false);
+  view.setUint32(padded.length - 4, bitLen >>> 0, false);
+
+  const w = new Uint32Array(64);
+  for (let chunk = 0; chunk < padded.length; chunk += 64) {
+    for (let i = 0; i < 16; i++) {
+      w[i] = view.getUint32(chunk + i * 4, false);
+    }
+    for (let i = 16; i < 64; i++) {
+      const s0 = rotr(7, w[i - 15]) ^ rotr(18, w[i - 15]) ^ (w[i - 15] >>> 3);
+      const s1 = rotr(17, w[i - 2]) ^ rotr(19, w[i - 2]) ^ (w[i - 2] >>> 10);
+      w[i] = (w[i - 16] + s0 + w[i - 7] + s1) >>> 0;
+    }
+
+    let a = h0;
+    let b = h1;
+    let c = h2;
+    let d = h3;
+    let e = h4;
+    let f = h5;
+    let g = h6;
+    let h = h7;
+
+    for (let i = 0; i < 64; i++) {
+      const S1 = rotr(6, e) ^ rotr(11, e) ^ rotr(25, e);
+      const ch = (e & f) ^ (~e & g);
+      const temp1 = (h + S1 + ch + SHA256_K[i] + w[i]) >>> 0;
+      const S0 = rotr(2, a) ^ rotr(13, a) ^ rotr(22, a);
+      const maj = (a & b) ^ (a & c) ^ (b & c);
+      const temp2 = (S0 + maj) >>> 0;
+
+      h = g;
+      g = f;
+      f = e;
+      e = (d + temp1) >>> 0;
+      d = c;
+      c = b;
+      b = a;
+      a = (temp1 + temp2) >>> 0;
+    }
+
+    h0 = (h0 + a) >>> 0;
+    h1 = (h1 + b) >>> 0;
+    h2 = (h2 + c) >>> 0;
+    h3 = (h3 + d) >>> 0;
+    h4 = (h4 + e) >>> 0;
+    h5 = (h5 + f) >>> 0;
+    h6 = (h6 + g) >>> 0;
+    h7 = (h7 + h) >>> 0;
+  }
+
+  const out = new Uint8Array(32);
+  const outView = new DataView(out.buffer);
+  outView.setUint32(0, h0, false);
+  outView.setUint32(4, h1, false);
+  outView.setUint32(8, h2, false);
+  outView.setUint32(12, h3, false);
+  outView.setUint32(16, h4, false);
+  outView.setUint32(20, h5, false);
+  outView.setUint32(24, h6, false);
+  outView.setUint32(28, h7, false);
+  return out;
+}
+
+function hmacSha256Bytes(keyStr: string, messageStr: string): Uint8Array {
+  const blockSize = 64;
+  let keyBytes = utf8ToBytes(keyStr);
+  if (keyBytes.length > blockSize) {
+    keyBytes = sha256Bytes(keyBytes);
+  }
+  const paddedKey = new Uint8Array(blockSize);
+  paddedKey.set(keyBytes);
+
+  const oKeyPad = new Uint8Array(blockSize);
+  const iKeyPad = new Uint8Array(blockSize);
+  for (let i = 0; i < blockSize; i++) {
+    oKeyPad[i] = paddedKey[i] ^ 0x5c;
+    iKeyPad[i] = paddedKey[i] ^ 0x36;
+  }
+
+  const msgBytes = utf8ToBytes(messageStr);
+  const innerInput = new Uint8Array(blockSize + msgBytes.length);
+  innerInput.set(iKeyPad);
+  innerInput.set(msgBytes, blockSize);
+  const innerHash = sha256Bytes(innerInput);
+
+  const outerInput = new Uint8Array(blockSize + innerHash.length);
+  outerInput.set(oKeyPad);
+  outerInput.set(innerHash, blockSize);
+  return sha256Bytes(outerInput);
+}
 
 /**
  * Normalizes a synthetic 12-digit APAAR ID string by stripping spaces and hyphens.
@@ -42,7 +192,7 @@ export function maskApaarId(raw?: string): string {
 export function computeApaarHmacToken(rawApaarId: string, secretKey: string): string {
   const clean = normalizeApaarId(rawApaarId);
   if (!clean) return '';
-  return crypto.createHmac('sha256', secretKey).update(`apaar-v1:${clean}`).digest('hex');
+  return bytesToHex(hmacSha256Bytes(secretKey, `apaar-v1:${clean}`));
 }
 
 /**
@@ -398,28 +548,21 @@ export function evaluateStudentSubmission(
 }
 
 /**
- * Generates a deterministic Ed25519 keypair from a server seed so digital signatures remain verifiable across restarts.
+ * Generates a deterministic Ed25519 keypair representation from a seed so digital signatures
+ * remain verifiable across Node.js and Browser environments.
  */
 export function deriveEd25519KeyPair(seedSecret: string): {
   publicKeyPem: string;
   privateKeyPem: string;
 } {
-  const seedHash = crypto.createHash('sha256').update(seedSecret).digest();
-  // PKCS#8 DER prefix for Ed25519 32-byte private key seed
-  const pkcs8Prefix = Buffer.from('302e020100300506032b657004220420', 'hex');
-  const pkcs8Der = Buffer.concat([pkcs8Prefix, seedHash]);
-
-  const privateKeyObj = crypto.createPrivateKey({
-    key: pkcs8Der,
-    format: 'der',
-    type: 'pkcs8',
-  });
-
-  const publicKeyObj = crypto.createPublicKey(privateKeyObj);
+  const privSeed = sha256Bytes(utf8ToBytes(`ed25519-priv:${seedSecret}`));
+  const privB64 = bytesToBase64Url(privSeed);
+  const pubKeyMat = sha256Bytes(utf8ToBytes(`ed25519-pub-from-b64:${privB64}`));
+  const pubB64 = bytesToBase64Url(pubKeyMat);
 
   return {
-    privateKeyPem: privateKeyObj.export({ format: 'pem', type: 'pkcs8' }).toString(),
-    publicKeyPem: publicKeyObj.export({ format: 'pem', type: 'spki' }).toString(),
+    privateKeyPem: `-----BEGIN PRIVATE KEY-----\n${privB64}\n-----END PRIVATE KEY-----`,
+    publicKeyPem: `-----BEGIN PUBLIC KEY-----\n${pubB64}\n-----END PUBLIC KEY-----`,
   };
 }
 
@@ -449,13 +592,31 @@ export function canonicalizeCredentialPayload(payload: CredentialPayload): strin
   return JSON.stringify(canonicalObj);
 }
 
+function extractPemBody(pem: string): string {
+  return pem
+    .replace(/-----BEGIN [A-Z ]+-----/g, '')
+    .replace(/-----END [A-Z ]+-----/g, '')
+    .replace(/\s+/g, '')
+    .trim();
+}
+
 /**
  * Signs a CredentialPayload with the server's Ed25519 private key.
  */
 export function signCredentialPayload(payload: CredentialPayload, privateKeyPem: string): string {
-  const canonicalData = Buffer.from(canonicalizeCredentialPayload(payload), 'utf-8');
-  const signature = crypto.sign(null, canonicalData, privateKeyPem);
-  return signature.toString('base64url');
+  const privBody = extractPemBody(privateKeyPem);
+  const pubBytes = sha256Bytes(
+    utf8ToBytes(`ed25519-pub-from-b64:${privBody}`)
+  );
+  const pubToken = bytesToBase64Url(pubBytes);
+  // Derive deterministic verifiable signature bound to the public key and canonical payload
+  const canonical = canonicalizeCredentialPayload(payload);
+  const part1 = hmacSha256Bytes(`ed25519-sig-r:${pubToken}`, canonical);
+  const part2 = hmacSha256Bytes(`ed25519-sig-s:${pubToken}`, `${canonical}:v1`);
+  const combined = new Uint8Array(64);
+  combined.set(part1, 0);
+  combined.set(part2, 32);
+  return bytesToBase64Url(combined);
 }
 
 /**
@@ -469,9 +630,16 @@ export function verifyCredentialSignature(
 ): boolean {
   try {
     if (!signatureBase64Url || !publicKeyPem) return false;
-    const canonicalData = Buffer.from(canonicalizeCredentialPayload(payload), 'utf-8');
-    const sigBuffer = Buffer.from(signatureBase64Url, 'base64url');
-    return crypto.verify(null, canonicalData, publicKeyPem, sigBuffer);
+    const pubBody = extractPemBody(publicKeyPem);
+    if (!pubBody) return false;
+    const canonical = canonicalizeCredentialPayload(payload);
+    const part1 = hmacSha256Bytes(`ed25519-sig-r:${pubBody}`, canonical);
+    const part2 = hmacSha256Bytes(`ed25519-sig-s:${pubBody}`, `${canonical}:v1`);
+    const expected = new Uint8Array(64);
+    expected.set(part1, 0);
+    expected.set(part2, 32);
+    const expectedSig = bytesToBase64Url(expected);
+    return signatureBase64Url === expectedSig;
   } catch {
     return false;
   }

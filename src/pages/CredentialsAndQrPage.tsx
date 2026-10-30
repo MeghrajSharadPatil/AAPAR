@@ -20,6 +20,7 @@ import {
   DigitalCredential,
   ValidationStatus,
 } from '../types/domain';
+import { APAAR_SETU_LOGO } from '../components/Layout';
 
 export const CredentialsAndQrPage: React.FC<{
   mode:
@@ -853,29 +854,31 @@ export const CredentialsAndQrPage: React.FC<{
       )}
 
       {/* OFFICIAL CERTIFICATE PREVIEW CARD */}
-      <div className="bg-white border-2 border-slate-300 rounded-2xl p-8 sm:p-10 shadow-sm max-w-4xl mx-auto">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b-2 border-slate-200 pb-6">
-          <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-xl bg-blue-950 text-white flex items-center justify-center shrink-0">
-              <ShieldCheck className="w-7 h-7 text-teal-400" />
-            </div>
+      <div className="bg-white border-2 border-[#C6BEB0] border-t-4 border-t-[#08204B] rounded-md p-8 sm:p-10 shadow-sm max-w-4xl mx-auto">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b-2 border-[#DDD7C9] pb-6">
+          <div className="flex items-center gap-4">
+            <img
+              src={APAAR_SETU_LOGO}
+              alt="APAAR Setu Official Emblem"
+              className="w-16 h-16 object-contain rounded-md bg-[#F6F4EF] border border-[#DDD7C9] p-1 shrink-0"
+            />
             <div>
-              <div className="text-xs font-bold tracking-widest uppercase text-blue-950">
+              <div className="font-mono text-xs font-bold tracking-widest uppercase text-[#C45500]">
                 APAAR SETU – VERIFIED STUDENT CREDENTIAL
               </div>
-              <h2 className="font-display text-xl sm:text-2xl font-bold text-slate-900 mt-0.5">
+              <h2 className="font-display text-xl sm:text-2xl font-bold text-[#08204B] mt-0.5">
                 National Academic Identity & Seat Verification Certificate
               </h2>
-              <div className="text-xs text-slate-500 mt-0.5">
+              <div className="text-xs text-slate-600 mt-0.5">
                 One ID. One Seat. One Verified Truth. · Credential ID:{' '}
-                <span className="font-mono font-semibold text-slate-800">
+                <span className="font-mono font-semibold text-slate-900">
                   {selectedCred.credentialId}
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="text-emerald-700 text-xs font-bold flex items-center gap-1.5 shrink-0">
+          <div className="text-[#0F6E06] font-mono text-xs font-bold flex items-center gap-1.5 shrink-0">
             <CheckCircle2 className="w-4 h-4" />
             <span>Ed25519 Digitally Signed</span>
           </div>

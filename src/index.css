@@ -1,23 +1,85 @@
 @import "tailwindcss";
 
+@theme {
+  /* Sovereign Archival Parchment & Warm Stone Scale (Replaces cold AI-default slate) */
+  --color-slate-50: #F6F4EF;
+  --color-slate-100: #EDE9DF;
+  --color-slate-200: #DDD7C9;
+  --color-slate-300: #C6BEB0;
+  --color-slate-400: #8C8577;
+  --color-slate-500: #635D52;
+  --color-slate-600: #48433B;
+  --color-slate-700: #302D27;
+  --color-slate-800: #1F1D19;
+  --color-slate-900: #12110F;
+
+  /* APAAR Setu Logo Cobalt & Ashoka Navy Scale */
+  --color-blue-50: #EEF3FA;
+  --color-blue-100: #D8E5F7;
+  --color-blue-200: #B4CEEF;
+  --color-blue-600: #0066CC;
+  --color-blue-700: #0055B3;
+  --color-blue-800: #0E3F8A;
+  --color-blue-900: #0B2E6B;
+  --color-blue-950: #08204B;
+
+  /* APAAR Setu Logo India Green & Saffron Accents */
+  --color-teal-50: #ECF7EE;
+  --color-teal-100: #D1EED6;
+  --color-teal-200: #A6DFB1;
+  --color-teal-300: #6EC882;
+  --color-teal-400: #3BB357;
+  --color-teal-600: #138808;
+  --color-teal-700: #0F6E06;
+  --color-teal-800: #0C5605;
+  --color-teal-900: #094204;
+
+  --color-emerald-50: #ECF7EE;
+  --color-emerald-100: #D1EED6;
+  --color-emerald-200: #A6DFB1;
+  --color-emerald-300: #6EC882;
+  --color-emerald-600: #138808;
+  --color-emerald-700: #0F6E06;
+  --color-emerald-800: #0C5605;
+
+  --color-amber-50: #FFF6EB;
+  --color-amber-100: #FDE9CE;
+  --color-amber-200: #FBD09D;
+  --color-amber-300: #F8B063;
+  --color-amber-600: #E66A00;
+  --color-amber-700: #C45500;
+  --color-amber-800: #9C4200;
+  --color-amber-900: #7A3300;
+  --color-amber-950: #4D1E00;
+
+  /* Crisp Ledger Radii (Eliminates bubbly AI-slop rounded corners) */
+  --radius-lg: 0.375rem;
+  --radius-xl: 0.375rem;
+  --radius-2xl: 0.5rem;
+}
+
 @layer base {
   :root {
-    --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-sans: 'Public Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
+    --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
   }
 
   body {
     font-family: var(--font-sans);
-    color: #0f172a;
-    background-color: #f8fafc;
+    color: #12110F;
+    background-color: #F6F4EF;
+    background-image: radial-gradient(#DDD7C9 0.6px, transparent 0.6px);
+    background-size: 24px 24px;
   }
 
   h1, h2, h3, h4, .font-display {
     font-family: var(--font-display);
+    letter-spacing: -0.015em;
   }
 
   .font-mono, .tabular-nums {
+    font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
   }
 }
@@ -31,6 +93,6 @@
   }
   body {
     background: #ffffff !important;
+    background-image: none !important;
   }
 }
-

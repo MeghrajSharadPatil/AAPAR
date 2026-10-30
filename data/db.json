@@ -6133,6 +6133,28 @@
   ],
   "auditLogs": [
     {
+      "id": "aud-1793377534028-666",
+      "actionId": "ACT-2026-9206",
+      "userName": "Rahul Sharma",
+      "userRole": "STUDENT",
+      "action": "User Portal Login",
+      "entityReference": "rahul.sharma@student-demo.edu.in",
+      "timestamp": "2026-10-30 16:25 UTC",
+      "status": "Success",
+      "details": "Authenticated into STUDENT portal session."
+    },
+    {
+      "id": "aud-1793377530245-74",
+      "actionId": "ACT-2026-5016",
+      "userName": "Dr. Rajeshwar Varma",
+      "userRole": "AICTE_ADMIN",
+      "action": "User Portal Login",
+      "entityReference": "admin@aicte-demo.gov.in",
+      "timestamp": "2026-10-30 16:25 UTC",
+      "status": "Success",
+      "details": "Authenticated into AICTE_ADMIN portal session."
+    },
+    {
       "id": "aud-1793376178439-773",
       "actionId": "ACT-2026-5450",
       "userName": "Authorized User",

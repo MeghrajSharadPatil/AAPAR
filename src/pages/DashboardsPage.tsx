@@ -37,8 +37,9 @@ import {
   UserRole,
   ValidationStatus,
 } from '../types/domain';
+import { APAAR_SETU_LOGO } from '../components/Layout';
 
-const CHART_COLORS = ['#1e3a8a', '#0d9488', '#d97706', '#dc2626'];
+const CHART_COLORS = ['#08204B', '#F5821F', '#138808', '#C81E1E'];
 
 export const DashboardsPage: React.FC = () => {
   const { user } = usePlatform();
@@ -178,28 +179,38 @@ const AicteCentralDashboard: React.FC = () => {
 
   return (
     <div className="space-y-8">
-      {/* Page Title & Action Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="font-display text-2xl sm:text-3xl font-bold text-slate-900">
-            AICTE Central Monitoring Dashboard
-          </h1>
-          <p className="text-sm text-slate-600 mt-1">
-            Monitor institutions, admissions, academic identities and student verification.
-          </p>
+      {/* Sovereign Masthead & Action Header */}
+      <div className="bg-white border border-slate-300 border-t-4 border-t-[#08204B] rounded-md p-5 shadow-2xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <img
+            src={APAAR_SETU_LOGO}
+            alt="APAAR Setu Emblem"
+            className="w-14 h-14 object-contain rounded-md bg-[#F6F4EF] border border-slate-200 p-1 shrink-0"
+          />
+          <div>
+            <div className="font-mono text-[11px] uppercase tracking-wider text-[#C45500] font-semibold">
+              All India Council for Technical Education · Central Command
+            </div>
+            <h1 className="font-display text-2xl sm:text-3xl font-bold text-[#08204B]">
+              AICTE Central Monitoring Dashboard
+            </h1>
+            <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
+              National APAAR identity registry, live sanctioned seat ledger, and cross-institution duplicate oversight.
+            </p>
+          </div>
         </div>
-        <div className="flex items-center gap-3 shrink-0">
+        <div className="flex flex-wrap items-center gap-2.5 shrink-0">
           <button
             type="button"
             onClick={() => navigate('/duplicate-shield')}
-            className="px-4 py-2 text-xs font-semibold text-slate-800 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors whitespace-nowrap"
+            className="px-4 py-2 text-xs font-semibold text-slate-800 bg-[#F6F4EF] border border-slate-300 rounded-md hover:bg-slate-200 transition-colors whitespace-nowrap cursor-pointer"
           >
             Inspect Duplicate Shield ({duplicateRecordsCount})
           </button>
           <button
             type="button"
             onClick={() => navigate('/reports')}
-            className="px-4 py-2 text-xs font-semibold text-white bg-blue-950 rounded-lg hover:bg-blue-900 transition-colors whitespace-nowrap"
+            className="px-4 py-2 text-xs font-semibold text-white bg-[#08204B] border-b-2 border-[#F5821F] rounded-md hover:bg-[#0B2E6B] transition-colors whitespace-nowrap cursor-pointer"
           >
             Export National Reports
           </button>
@@ -208,12 +219,12 @@ const AicteCentralDashboard: React.FC = () => {
 
       {/* 6 Statistics Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-        <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-xs">
-          <div className="flex items-center justify-between text-slate-500 text-xs font-medium">
+        <div className="bg-white border border-slate-200 border-t-2 border-t-[#08204B] rounded-md p-4 shadow-2xs">
+          <div className="flex items-center justify-between text-slate-600 text-xs font-semibold">
             <span>Total Institutions</span>
-            <Building2 className="w-4 h-4 text-blue-900" />
+            <Building2 className="w-4 h-4 text-[#08204B]" />
           </div>
-          <div className="text-2xl font-bold text-slate-900 mt-2 font-mono tabular-nums">
+          <div className="text-2xl font-bold text-[#08204B] mt-2 font-mono tabular-nums">
             {totalInstitutions}
           </div>
           <div className="text-[11px] text-slate-500 mt-1">
@@ -221,12 +232,12 @@ const AicteCentralDashboard: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-xs">
-          <div className="flex items-center justify-between text-slate-500 text-xs font-medium">
+        <div className="bg-white border border-slate-200 border-t-2 border-t-[#0066CC] rounded-md p-4 shadow-2xs">
+          <div className="flex items-center justify-between text-slate-600 text-xs font-semibold">
             <span>Total Approved Intake</span>
-            <Scale className="w-4 h-4 text-blue-900" />
+            <Scale className="w-4 h-4 text-[#0066CC]" />
           </div>
-          <div className="text-2xl font-bold text-slate-900 mt-2 font-mono tabular-nums">
+          <div className="text-2xl font-bold text-[#08204B] mt-2 font-mono tabular-nums">
             {totalApprovedIntake}
           </div>
           <div className="text-[11px] text-slate-500 mt-1">
@@ -234,25 +245,25 @@ const AicteCentralDashboard: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-xs">
-          <div className="flex items-center justify-between text-slate-500 text-xs font-medium">
+        <div className="bg-white border border-slate-200 border-t-2 border-t-[#138808] rounded-md p-4 shadow-2xs">
+          <div className="flex items-center justify-between text-slate-600 text-xs font-semibold">
             <span>Total Student Enrolment</span>
-            <Users className="w-4 h-4 text-teal-700" />
+            <Users className="w-4 h-4 text-[#138808]" />
           </div>
-          <div className="text-2xl font-bold text-slate-900 mt-2 font-mono tabular-nums">
+          <div className="text-2xl font-bold text-[#08204B] mt-2 font-mono tabular-nums">
             {totalEnrolment}
           </div>
-          <div className="text-[11px] text-emerald-700 font-medium mt-1 tabular-nums">
+          <div className="text-[11px] text-[#0F6E06] font-semibold mt-1 tabular-nums">
             {Math.round((totalEnrolment / Math.max(1, totalApprovedIntake)) * 100)}% Overall Occupancy
           </div>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-xs">
-          <div className="flex items-center justify-between text-slate-500 text-xs font-medium">
+        <div className="bg-white border border-slate-200 border-t-2 border-t-[#138808] rounded-md p-4 shadow-2xs">
+          <div className="flex items-center justify-between text-slate-600 text-xs font-semibold">
             <span>Supernumerary Seats</span>
-            <Award className="w-4 h-4 text-teal-700" />
+            <Award className="w-4 h-4 text-[#138808]" />
           </div>
-          <div className="text-2xl font-bold text-slate-900 mt-2 font-mono tabular-nums">
+          <div className="text-2xl font-bold text-[#08204B] mt-2 font-mono tabular-nums">
             {totalSuperOccupied} / {totalSupernumerarySeats}
           </div>
           <div className="text-[11px] text-slate-500 mt-1">
@@ -260,25 +271,25 @@ const AicteCentralDashboard: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-xs">
-          <div className="flex items-center justify-between text-slate-500 text-xs font-medium">
+        <div className="bg-white border border-slate-200 border-t-2 border-t-red-600 rounded-md p-4 shadow-2xs">
+          <div className="flex items-center justify-between text-slate-600 text-xs font-semibold">
             <span>Duplicate Records</span>
             <CopyCheck className="w-4 h-4 text-red-600" />
           </div>
           <div className="text-2xl font-bold text-red-600 mt-2 font-mono tabular-nums">
             {duplicateRecordsCount}
           </div>
-          <div className="text-[11px] text-red-700 font-medium mt-1">
+          <div className="text-[11px] text-red-700 font-semibold mt-1">
             Cross-Institute HMAC Alerts
           </div>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-xs">
-          <div className="flex items-center justify-between text-slate-500 text-xs font-medium">
+        <div className="bg-white border border-slate-200 border-t-2 border-t-[#F5821F] rounded-md p-4 shadow-2xs">
+          <div className="flex items-center justify-between text-slate-600 text-xs font-semibold">
             <span>Pending Validation</span>
-            <AlertTriangle className="w-4 h-4 text-amber-600" />
+            <AlertTriangle className="w-4 h-4 text-[#E66A00]" />
           </div>
-          <div className="text-2xl font-bold text-amber-600 mt-2 font-mono tabular-nums">
+          <div className="text-2xl font-bold text-[#C45500] mt-2 font-mono tabular-nums">
             {pendingValidationCount}
           </div>
           <div className="text-[11px] text-slate-500 mt-1">
@@ -290,7 +301,7 @@ const AicteCentralDashboard: React.FC = () => {
       {/* 4 Analytics Charts Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* A. Student Enrolment Overview */}
-        <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-xs">
+        <div className="bg-white border border-slate-200 rounded-md p-6 shadow-2xs">
           <div className="flex items-center justify-between mb-4">
             <div>
               <h2 className="text-base font-bold text-slate-900">
@@ -304,20 +315,20 @@ const AicteCentralDashboard: React.FC = () => {
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={yearChartData} margin={{ top: 10, right: 16, left: -10, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#DDD7C9" />
                 <XAxis dataKey="year" tick={{ fontSize: 12 }} />
                 <YAxis tick={{ fontSize: 12 }} />
                 <Tooltip />
                 <Legend wrapperStyle={{ fontSize: 12 }} />
-                <Bar dataKey="Verified" fill="#1e3a8a" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="Exceptions" fill="#d97706" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="Verified" fill="#08204B" radius={[2, 2, 0, 0]} />
+                <Bar dataKey="Exceptions" fill="#F5821F" radius={[2, 2, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
 
         {/* B. Institution-wise Enrolment */}
-        <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-xs">
+        <div className="bg-white border border-slate-200 rounded-md p-6 shadow-2xs">
           <div className="flex items-center justify-between mb-4">
             <div>
               <h2 className="text-base font-bold text-slate-900">
@@ -331,13 +342,13 @@ const AicteCentralDashboard: React.FC = () => {
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={instChartData} margin={{ top: 10, right: 16, left: -10, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#DDD7C9" />
                 <XAxis dataKey="name" tick={{ fontSize: 12 }} />
                 <YAxis tick={{ fontSize: 12 }} />
                 <Tooltip />
                 <Legend wrapperStyle={{ fontSize: 12 }} />
-                <Bar dataKey="Intake" fill="#94a3b8" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="Enrolled" fill="#0d9488" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="Intake" fill="#C6BEB0" radius={[2, 2, 0, 0]} />
+                <Bar dataKey="Enrolled" fill="#138808" radius={[2, 2, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>

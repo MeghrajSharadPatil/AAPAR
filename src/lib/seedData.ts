@@ -155,6 +155,54 @@ export function buildInitialSeedDatabase(
       integrityStatus: 'Compliant',
       establishedYear: 2004,
     },
+    {
+      id: 'inst-7',
+      name: 'Vindhya National Institute of Engineering',
+      code: 'AICTE-MP-702',
+      state: 'Madhya Pradesh',
+      district: 'Bhopal',
+      type: 'Government',
+      approvalStatus: 'Approved',
+      submissionStatus: 'Submitted',
+      integrityStatus: 'Compliant',
+      establishedYear: 1991,
+    },
+    {
+      id: 'inst-8',
+      name: 'Deccan College of Cybernetics & Engineering',
+      code: 'AICTE-TS-815',
+      state: 'Telangana',
+      district: 'Hyderabad',
+      type: 'Autonomous Private',
+      approvalStatus: 'Approved',
+      submissionStatus: 'Submitted',
+      integrityStatus: 'Action Required',
+      establishedYear: 2006,
+    },
+    {
+      id: 'inst-9',
+      name: 'Rajputana Technical Institute of Science',
+      code: 'AICTE-RJ-904',
+      state: 'Rajasthan',
+      district: 'Jaipur',
+      type: 'State University Affiliated',
+      approvalStatus: 'Approved',
+      submissionStatus: 'Verification in Progress',
+      integrityStatus: 'Compliant',
+      establishedYear: 1999,
+    },
+    {
+      id: 'inst-10',
+      name: 'Kalinga Institute of Advanced Computing',
+      code: 'AICTE-OD-951',
+      state: 'Odisha',
+      district: 'Khordha',
+      type: 'Deemed University',
+      approvalStatus: 'Approved',
+      submissionStatus: 'Submitted',
+      integrityStatus: 'Compliant',
+      establishedYear: 2003,
+    },
   ];
 
   const programmes: Programme[] = [
@@ -189,6 +237,18 @@ export function buildInitialSeedDatabase(
       institutionCode: 'AICTE-DL-101',
       name: 'Artificial Intelligence and Data Science',
       department: 'Computer Engineering',
+      academicYear: '2026-27',
+      approvedIntake: 30,
+      supernumerarySeats: 3,
+      approvalStatus: 'Approved',
+    },
+    {
+      id: 'prog-11',
+      institutionId: 'inst-1',
+      institutionName: 'ABC Engineering College',
+      institutionCode: 'AICTE-DL-101',
+      name: 'Robotics and Industrial Automation',
+      department: 'Mechanical & Robotics',
       academicYear: '2026-27',
       approvedIntake: 30,
       supernumerarySeats: 3,
@@ -278,6 +338,66 @@ export function buildInitialSeedDatabase(
       supernumerarySeats: 5,
       approvalStatus: 'Approved',
     },
+    {
+      id: 'prog-12',
+      institutionId: 'inst-7',
+      institutionName: 'Vindhya National Institute of Engineering',
+      institutionCode: 'AICTE-MP-702',
+      name: 'Semiconductor & Microelectronics Engineering',
+      department: 'Electronics Engineering',
+      academicYear: '2026-27',
+      approvedIntake: 45,
+      supernumerarySeats: 4,
+      approvalStatus: 'Approved',
+    },
+    {
+      id: 'prog-13',
+      institutionId: 'inst-8',
+      institutionName: 'Deccan College of Cybernetics & Engineering',
+      institutionCode: 'AICTE-TS-815',
+      name: 'Data Science & Computational Engineering',
+      department: 'Computer Engineering',
+      academicYear: '2026-27',
+      approvedIntake: 60,
+      supernumerarySeats: 6,
+      approvalStatus: 'Approved',
+    },
+    {
+      id: 'prog-14',
+      institutionId: 'inst-9',
+      institutionName: 'Rajputana Technical Institute of Science',
+      institutionCode: 'AICTE-RJ-904',
+      name: 'Aerospace & Avionics Engineering',
+      department: 'Aerospace Engineering',
+      academicYear: '2026-27',
+      approvedIntake: 30,
+      supernumerarySeats: 3,
+      approvalStatus: 'Approved',
+    },
+    {
+      id: 'prog-15',
+      institutionId: 'inst-10',
+      institutionName: 'Kalinga Institute of Advanced Computing',
+      institutionCode: 'AICTE-OD-951',
+      name: 'Cloud Computing & Distributed Systems',
+      department: 'Information Technology',
+      academicYear: '2026-27',
+      approvedIntake: 45,
+      supernumerarySeats: 5,
+      approvalStatus: 'Approved',
+    },
+    {
+      id: 'prog-16',
+      institutionId: 'inst-4',
+      institutionName: 'Sardar Vallabhbhai College of Technology',
+      institutionCode: 'AICTE-GJ-412',
+      name: 'Chemical & Green Process Engineering',
+      department: 'Chemical Engineering',
+      academicYear: '2026-27',
+      approvedIntake: 30,
+      supernumerarySeats: 3,
+      approvalStatus: 'Approved',
+    },
   ];
 
   const students: StudentRecord[] = [];
@@ -286,10 +406,12 @@ export function buildInitialSeedDatabase(
     'Aarav', 'Vivaan', 'Aditya', 'Vihaan', 'Arjun', 'Sai', 'Reyansh', 'Ayaan', 'Krishna', 'Ishaan',
     'Ananya', 'Diya', 'Aditi', 'Kavya', 'Meera', 'Nandini', 'Priya', 'Riya', 'Saanvi', 'Tanvi',
     'Rohan', 'Karthik', 'Pranav', 'Siddharth', 'Dev', 'Nikhil', 'Harsh', 'Varun', 'Yash', 'Manish',
+    'Aishwarya', 'Bhavya', 'Chaitanya', 'Deepika', 'Esha', 'Gaurav', 'Himanshu', 'Jhanvi', 'Kunal', 'Lakshmi',
   ];
   const lastNames = [
     'Patel', 'Verma', 'Nair', 'Reddy', 'Kulkarni', 'Chatterjee', 'Joshi', 'Mehta', 'Bhatia', 'Gowda',
-    'Deshmukh', 'Subramanian', 'Bora', 'Thakur', 'Malhotra', 'Srinivasan', 'Rathore', 'Agrawal', 'kapoor', 'pillai',
+    'Deshmukh', 'Subramanian', 'Bora', 'Thakur', 'Malhotra', 'Srinivasan', 'Rathore', 'Agrawal', 'Kapoor', 'Pillai',
+    'Chauhan', 'Banerjee', 'Menon', 'Tiwari', 'Saxena', 'Mishra', 'kashyap', 'iyengar', 'shetty', 'das',
   ];
 
   // 1. Primary Featured Student: Rahul Sharma (Student ID: 221901, APAAR Demo ID: 123456789012) at ABC Engineering College (prog-1, Regular #1)
@@ -321,11 +443,20 @@ export function buildInitialSeedDatabase(
   });
 
   // Fill remaining 59 regular seats in prog-1 (ABC Engineering College - CSE) so Regular Enrolment = 60/60 (FULL!)
+  const regularCategories = [
+    AdmissionCategory.GENERAL,
+    AdmissionCategory.OBC_NCL,
+    AdmissionCategory.EWS,
+    AdmissionCategory.SC,
+    AdmissionCategory.ST,
+  ];
+
   for (let i = 2; i <= 60; i++) {
     const fn = firstNames[(i - 1) % firstNames.length];
     const ln = lastNames[(i * 3) % lastNames.length];
     const apaar = String(210000000000 + i * 137);
     const stuId = String(221900 + i);
+    const cat = i % 5 === 0 ? regularCategories[i % regularCategories.length] : AdmissionCategory.GENERAL;
     students.push({
       id: `stu-abc-cse-${i}`,
       studentId: stuId,
@@ -343,7 +474,7 @@ export function buildInitialSeedDatabase(
       department: 'Computer Engineering',
       academicYear: '2026-27',
       admissionDate: i <= 8 ? '2026-08-12' : `2026-08-${String(10 + (i % 15)).padStart(2, '0')}`,
-      admissionCategory: AdmissionCategory.GENERAL,
+      admissionCategory: cat,
       isSupernumerary: false,
       admissionStatus: AdmissionStatus.CONFIRMED,
       validationStatus: ValidationStatus.VERIFIED,
@@ -439,7 +570,7 @@ export function buildInitialSeedDatabase(
     verificationStatus: 'Exception Queue',
   });
 
-  // Add Missing APAAR ID records (Exception Queue) in ABC Engineering College (prog-2) & Eastern Himalayan (prog-9)
+  // Add rich Exception Queue records in ABC Engineering College (inst-1) covering Missing APAAR, Invalid Format, Pending Verification, and Flagged for Review
   students.push({
     id: 'stu-missing-1',
     studentId: '222104',
@@ -495,6 +626,66 @@ export function buildInitialSeedDatabase(
     validationReason:
       'APAAR ID does not match the configured 12-digit numeric format (leading zero prefix 0000 is invalid).',
     recommendedCorrection: 'Correct the 12-digit APAAR ID and trigger revalidation.',
+    verificationStatus: 'Exception Queue',
+  });
+
+  const pendingApaar1 = '482910374651';
+  students.push({
+    id: 'stu-pending-1',
+    studentId: '222115',
+    fullName: 'Ritika Chatterjee',
+    dob: '2005-06-18',
+    gender: 'Female',
+    maskedApaarId: maskApaarId(pendingApaar1),
+    apaarHmacToken: computeApaarHmacToken(pendingApaar1, hmacSecret),
+    rawApaarDemo: pendingApaar1,
+    institutionId: 'inst-1',
+    institutionName: 'ABC Engineering College',
+    institutionCode: 'AICTE-DL-101',
+    programmeId: 'prog-11',
+    programmeName: 'Robotics and Industrial Automation',
+    department: 'Mechanical & Robotics',
+    academicYear: '2026-27',
+    admissionDate: '2026-08-25',
+    admissionCategory: AdmissionCategory.OBC_NCL,
+    isSupernumerary: false,
+    admissionStatus: AdmissionStatus.PROVISIONAL,
+    validationStatus: ValidationStatus.PENDING,
+    validationDate: '2026-08-25',
+    verificationReference: 'EXC-PEND-2026-115',
+    validationReason:
+      'Awaiting Academic Bank of Credits (ABC) demographic name token acknowledgement.',
+    recommendedCorrection: 'Trigger re-verification in APAAR Validation Engine.',
+    verificationStatus: 'Exception Queue',
+  });
+
+  const flaggedApaar1 = '539201847263';
+  students.push({
+    id: 'stu-flagged-1',
+    studentId: '222118',
+    fullName: 'Harshvardhan Rathore',
+    dob: '2005-01-29',
+    gender: 'Male',
+    maskedApaarId: maskApaarId(flaggedApaar1),
+    apaarHmacToken: computeApaarHmacToken(flaggedApaar1, hmacSecret),
+    rawApaarDemo: flaggedApaar1,
+    institutionId: 'inst-1',
+    institutionName: 'ABC Engineering College',
+    institutionCode: 'AICTE-DL-101',
+    programmeId: 'prog-2',
+    programmeName: 'Electronics and Communication Engineering',
+    department: 'Electronics Engineering',
+    academicYear: '2026-27',
+    admissionDate: '2026-08-26',
+    admissionCategory: AdmissionCategory.EWS,
+    isSupernumerary: false,
+    admissionStatus: AdmissionStatus.UNDER_REVIEW,
+    validationStatus: ValidationStatus.FLAGGED,
+    validationDate: '2026-08-26',
+    verificationReference: 'EXC-FLG-2026-118',
+    validationReason:
+      'State counseling allotment rank letter date differs from institutional reporting date by >14 days.',
+    recommendedCorrection: 'Review counseling allotment receipt and confirm verification.',
     verificationStatus: 'Exception Queue',
   });
 
@@ -555,17 +746,80 @@ export function buildInitialSeedDatabase(
     verificationStatus: 'Exception Queue',
   });
 
+  // Add third cross-institution duplicate pair (Aarav Verma across Vindhya National MP & Deccan College Telangana)
+  const aaravDupApaar = '774411228899';
+  students.push({
+    id: 'stu-aarav-mp-1',
+    studentId: 'MP-26-401',
+    fullName: 'Aarav Verma',
+    dob: '2005-05-11',
+    gender: 'Male',
+    maskedApaarId: maskApaarId(aaravDupApaar),
+    apaarHmacToken: computeApaarHmacToken(aaravDupApaar, hmacSecret),
+    rawApaarDemo: aaravDupApaar,
+    institutionId: 'inst-7',
+    institutionName: 'Vindhya National Institute of Engineering',
+    institutionCode: 'AICTE-MP-702',
+    programmeId: 'prog-12',
+    programmeName: 'Semiconductor & Microelectronics Engineering',
+    department: 'Electronics Engineering',
+    academicYear: '2026-27',
+    admissionDate: '2026-08-11',
+    admissionCategory: AdmissionCategory.GENERAL,
+    isSupernumerary: false,
+    admissionStatus: AdmissionStatus.CONFIRMED,
+    validationStatus: ValidationStatus.VERIFIED,
+    validationDate: '2026-08-11',
+    verificationReference: 'VER-AICTE-2026-MP401',
+    verificationStatus: 'Verified Credential Issued',
+  });
+
+  students.push({
+    id: 'stu-aarav-ts-2',
+    studentId: 'TS-26-819',
+    fullName: 'Aarav Verma',
+    dob: '2005-05-11',
+    gender: 'Male',
+    maskedApaarId: maskApaarId(aaravDupApaar),
+    apaarHmacToken: computeApaarHmacToken(aaravDupApaar, hmacSecret),
+    rawApaarDemo: aaravDupApaar,
+    institutionId: 'inst-8',
+    institutionName: 'Deccan College of Cybernetics & Engineering',
+    institutionCode: 'AICTE-TS-815',
+    programmeId: 'prog-13',
+    programmeName: 'Data Science & Computational Engineering',
+    department: 'Computer Engineering',
+    academicYear: '2026-27',
+    admissionDate: '2026-08-24',
+    admissionCategory: AdmissionCategory.GENERAL,
+    isSupernumerary: false,
+    admissionStatus: AdmissionStatus.PROVISIONAL,
+    validationStatus: ValidationStatus.DUPLICATE_DETECTED,
+    validationDate: '2026-08-24',
+    verificationReference: 'EXC-DUP-2026-004',
+    validationReason:
+      'Cross-institution HMAC-SHA256 APAAR match detected with Vindhya National Institute of Engineering (MP-26-401).',
+    recommendedCorrection: 'Inspect state counseling sliding round withdrawal slip.',
+    verificationStatus: 'Exception Queue',
+  });
+
   // Add students across remaining programmes and academic years (2024-25, 2025-26, 2026-27)
   const extraProgrammes = [
-    { prog: programmes[1], count: 14, year: '2026-27' },
-    { prog: programmes[2], count: 18, year: '2026-27' },
-    { prog: programmes[3], count: 22, year: '2025-26' },
-    { prog: programmes[4], count: 16, year: '2025-26' },
-    { prog: programmes[5], count: 24, year: '2026-27' },
-    { prog: programmes[6], count: 15, year: '2024-25' },
-    { prog: programmes[7], count: 19, year: '2025-26' },
-    { prog: programmes[8], count: 11, year: '2026-27' },
-    { prog: programmes[9], count: 20, year: '2026-27' },
+    { prog: programmes[1], count: 18, year: '2026-27' }, // prog-2 (ABC ECE)
+    { prog: programmes[2], count: 21, year: '2026-27' }, // prog-3 (ABC AI&DS)
+    { prog: programmes[3], count: 16, year: '2026-27' }, // prog-11 (ABC Robotics)
+    { prog: programmes[4], count: 32, year: '2025-26' }, // prog-4 (Indraprastha CSE)
+    { prog: programmes[5], count: 24, year: '2025-26' }, // prog-5 (Indraprastha Mech)
+    { prog: programmes[6], count: 34, year: '2026-27' }, // prog-6 (Dakshin Bharat ISE)
+    { prog: programmes[7], count: 19, year: '2024-25' }, // prog-7 (Dakshin Bharat VLSI)
+    { prog: programmes[8], count: 25, year: '2025-26' }, // prog-8 (Sardar Vallabhbhai Civil)
+    { prog: programmes[9], count: 14, year: '2026-27' }, // prog-9 (Eastern Himalayan Electrical)
+    { prog: programmes[10], count: 26, year: '2026-27' }, // prog-10 (Kaveri Cyber Security)
+    { prog: programmes[11], count: 28, year: '2026-27' }, // prog-12 (Vindhya Semiconductor)
+    { prog: programmes[12], count: 35, year: '2026-27' }, // prog-13 (Deccan Data Science)
+    { prog: programmes[13], count: 18, year: '2024-25' }, // prog-14 (Rajputana Aerospace)
+    { prog: programmes[14], count: 29, year: '2026-27' }, // prog-15 (Kalinga Cloud Computing)
+    { prog: programmes[15], count: 16, year: '2025-26' }, // prog-16 (Sardar Vallabhbhai Chemical)
   ];
 
   let seq = 100;
@@ -575,12 +829,16 @@ export function buildInitialSeedDatabase(
       const fn = firstNames[seq % firstNames.length];
       const ln = lastNames[(seq * 5) % lastNames.length];
       const isMissing = group.prog.id === 'prog-9' && j <= 3;
-      const isSuper = j === 1 && group.prog.supernumerarySeats > 0;
+      const isSuper = j <= 2 && group.prog.supernumerarySeats >= 2;
+      const superCats = [
+        AdmissionCategory.NRI,
+        AdmissionCategory.OCI,
+        AdmissionCategory.FN,
+        AdmissionCategory.PMSSS,
+      ];
       const category = isSuper
-        ? seq % 2 === 0
-          ? AdmissionCategory.FN
-          : AdmissionCategory.NRI
-        : AdmissionCategory.GENERAL;
+        ? superCats[seq % superCats.length]
+        : regularCategories[seq % regularCategories.length];
       const rawApaar = isMissing ? '' : String(610000000000 + seq * 431);
       const stuCode = `${group.prog.institutionCode.split('-')[1]}-${group.year.slice(2, 4)}-${seq}`;
 
@@ -678,13 +936,74 @@ export function buildInitialSeedDatabase(
       detectionDate: '2026-08-25',
       category: DuplicateCategory.POSSIBLE_DUPLICATE,
       riskLevel: RiskLevel.MEDIUM,
-      reviewStatus: 'Manual Review Required' as DuplicateCase['reviewStatus'],
+      reviewStatus: 'Pending Review',
       reviewNotes:
         'Matching student full name and DOB across two states; awaiting registrar verification of transfer certificate.',
     },
+    {
+      id: 'dup-case-4',
+      referenceId: 'DUP-2026-1128',
+      studentName: 'Aarav Verma',
+      studentIdA: 'MP-26-401',
+      studentIdB: 'TS-26-819',
+      maskedApaarId: 'XXXX-XXXX-8899',
+      institutionAId: 'inst-7',
+      institutionAName: 'Vindhya National Institute of Engineering',
+      institutionBId: 'inst-8',
+      institutionBName: 'Deccan College of Cybernetics & Engineering',
+      programmeA: 'Semiconductor & Microelectronics Engineering',
+      programmeB: 'Data Science & Computational Engineering',
+      academicYear: '2026-27',
+      detectionDate: '2026-08-24',
+      category: DuplicateCategory.EXACT_MATCH,
+      riskLevel: RiskLevel.HIGH,
+      reviewStatus: 'Pending Review',
+      reviewNotes:
+        'Identical HMAC-SHA256 academic identity token submitted across Bhopal (MP) and Hyderabad (TS) during Round 3 counseling.',
+    },
+    {
+      id: 'dup-case-5',
+      referenceId: 'DUP-2026-1141',
+      studentName: 'Meera Subramanian',
+      studentIdA: 'TN-26-198',
+      studentIdB: 'OD-26-342',
+      maskedApaarId: 'XXXX-XXXX-4510',
+      institutionAId: 'inst-6',
+      institutionAName: 'Kaveri College of Information Technology',
+      institutionBId: 'inst-10',
+      institutionBName: 'Kalinga Institute of Advanced Computing',
+      programmeA: 'Cyber Security and Blockchain Systems',
+      programmeB: 'Cloud Computing & Distributed Systems',
+      academicYear: '2026-27',
+      detectionDate: '2026-08-18',
+      category: DuplicateCategory.EXACT_MATCH,
+      riskLevel: RiskLevel.LOW,
+      reviewStatus: 'Resolved - Legitimate Transfer',
+      reviewNotes:
+        'Verified JoSAA/CSAB official seat withdrawal receipt from Kaveri College prior to reporting at Kalinga Institute.',
+    },
+    {
+      id: 'dup-case-6',
+      referenceId: 'DUP-2026-1164',
+      studentName: 'Devansh Rathore',
+      studentIdA: '221925',
+      studentIdB: 'RJ-26-312',
+      maskedApaarId: 'XXXX-XXXX-3425',
+      institutionAId: 'inst-1',
+      institutionAName: 'ABC Engineering College',
+      institutionBId: 'inst-9',
+      institutionBName: 'Rajputana Technical Institute of Science',
+      programmeA: 'Computer Science and Engineering',
+      programmeB: 'Aerospace & Avionics Engineering',
+      academicYear: '2026-27',
+      detectionDate: '2026-08-27',
+      category: DuplicateCategory.POSSIBLE_DUPLICATE,
+      riskLevel: RiskLevel.MEDIUM,
+      reviewStatus: 'Under Investigation',
+      reviewNotes:
+        'Demographic identity match flagged for registrar review; supporting migration certificate requested from Jaipur institute.',
+    },
   ];
-  // Normalize status of 3rd case to valid union value
-  duplicates[2].reviewStatus = 'Pending Review';
 
   // Build Ed25519 Signed Digital Credentials
   const rahulPayload: CredentialPayload = {
@@ -735,6 +1054,54 @@ export function buildInitialSeedDatabase(
     issuer: 'APAAR Setu Central Academic Authority (SIH26263 Prototype)',
   };
 
+  const kabirPayload: CredentialPayload = {
+    credentialId: 'CRED-APAAR-2026-221962',
+    studentId: '221962',
+    studentName: 'Kabir Chawla',
+    maskedApaarId: 'XXXX-XXXX-8902',
+    apaarDemoReference: '310045678902 (SYNTHETIC DEMO ID)',
+    institutionId: 'inst-1',
+    institutionName: 'ABC Engineering College',
+    institutionCode: 'AICTE-DL-101',
+    programmeName: 'Computer Science and Engineering',
+    academicYear: '2026-27',
+    issueDate: '2026-09-03',
+    expiryDate: '2030-08-31',
+    issuer: 'APAAR Setu Central Academic Authority (SIH26263 Prototype)',
+  };
+
+  const priyaPayload: CredentialPayload = {
+    credentialId: 'CRED-APAAR-2026-DB112',
+    studentId: 'DBIE-26-112',
+    studentName: 'Priya Nair',
+    maskedApaarId: 'XXXX-XXXX-3456',
+    apaarDemoReference: '567890123456 (SYNTHETIC DEMO ID)',
+    institutionId: 'inst-3',
+    institutionName: 'Dakshin Bharat Institute of Engineering',
+    institutionCode: 'AICTE-KA-309',
+    programmeName: 'Information Science and Engineering',
+    academicYear: '2026-27',
+    issueDate: '2026-09-01',
+    expiryDate: '2030-08-31',
+    issuer: 'APAAR Setu Central Academic Authority (SIH26263 Prototype)',
+  };
+
+  const aaravPayload: CredentialPayload = {
+    credentialId: 'CRED-APAAR-2026-MP401',
+    studentId: 'MP-26-401',
+    studentName: 'Aarav Verma',
+    maskedApaarId: 'XXXX-XXXX-8899',
+    apaarDemoReference: '774411228899 (SYNTHETIC DEMO ID)',
+    institutionId: 'inst-7',
+    institutionName: 'Vindhya National Institute of Engineering',
+    institutionCode: 'AICTE-MP-702',
+    programmeName: 'Semiconductor & Microelectronics Engineering',
+    academicYear: '2026-27',
+    issueDate: '2026-09-04',
+    expiryDate: '2030-08-31',
+    issuer: 'APAAR Setu Central Academic Authority (SIH26263 Prototype)',
+  };
+
   const credentials: DigitalCredential[] = [
     {
       credentialId: rahulPayload.credentialId,
@@ -757,6 +1124,39 @@ export function buildInitialSeedDatabase(
       status: 'Active',
       consentStatus: 'Consent Required',
       createdAt: '2026-09-02 11:30 IST',
+    },
+    {
+      credentialId: kabirPayload.credentialId,
+      studentRecordId: 'stu-abc-sup-2',
+      studentId: '221962',
+      payload: kabirPayload,
+      signature: signCredentialPayload(kabirPayload, privateKeyPem),
+      publicKeyPem,
+      status: 'Active',
+      consentStatus: 'Approved',
+      createdAt: '2026-09-03 14:15 IST',
+    },
+    {
+      credentialId: priyaPayload.credentialId,
+      studentRecordId: 'stu-priya-1',
+      studentId: 'DBIE-26-112',
+      payload: priyaPayload,
+      signature: signCredentialPayload(priyaPayload, privateKeyPem),
+      publicKeyPem,
+      status: 'Active',
+      consentStatus: 'Approved',
+      createdAt: '2026-09-01 16:20 IST',
+    },
+    {
+      credentialId: aaravPayload.credentialId,
+      studentRecordId: 'stu-aarav-mp-1',
+      studentId: 'MP-26-401',
+      payload: aaravPayload,
+      signature: signCredentialPayload(aaravPayload, privateKeyPem),
+      publicKeyPem,
+      status: 'Active',
+      consentStatus: 'Consent Required',
+      createdAt: '2026-09-04 09:45 IST',
     },
     {
       credentialId: expiredPayload.credentialId,
@@ -814,6 +1214,34 @@ export function buildInitialSeedDatabase(
       expiryDate: '2026-11-18',
       status: 'Pending',
     },
+    {
+      id: 'con-req-4',
+      studentRecordId: 'stu-rahul-1',
+      studentId: '221901',
+      studentName: 'Rahul Sharma',
+      credentialId: 'CRED-APAAR-2026-221901',
+      verifierName: 'Dr. S. K. Deshpande',
+      organization: 'DRDO Research & Innovation Internship Cell (Sandbox)',
+      purpose: 'Summer Research Fellowship Bonafide Enrolment Verification',
+      requestedFields: ['Student Full Name', 'Institution Code', 'Department', 'APAAR Verification Status'],
+      requestDate: '2026-10-22',
+      expiryDate: '2026-12-15',
+      status: 'Approved',
+    },
+    {
+      id: 'con-req-5',
+      studentRecordId: 'stu-rahul-1',
+      studentId: '221901',
+      studentName: 'Rahul Sharma',
+      credentialId: 'CRED-APAAR-2026-221901',
+      verifierName: 'Rituja Menon',
+      organization: 'QuickLoan EdFin Services Pvt. Ltd.',
+      purpose: 'Third-Party Commercial Marketing & Education Loan Pre-Check',
+      requestedFields: ['Student Full Name', 'DOB', 'Institution Name', 'Admission Category'],
+      requestDate: '2026-10-12',
+      expiryDate: '2026-11-12',
+      status: 'Rejected',
+    },
   ];
 
   const verificationLogs: VerificationLog[] = [
@@ -853,6 +1281,42 @@ export function buildInitialSeedDatabase(
       mode: 'QR Payload Scan',
       result: 'Expired Credential',
     },
+    {
+      id: 'vlog-4',
+      credentialId: 'CRED-APAAR-2026-221901',
+      studentId: '221901',
+      studentName: 'Rahul Sharma',
+      institutionName: 'ABC Engineering College',
+      verifierName: 'Dr. S. K. Deshpande',
+      organization: 'DRDO Research & Innovation Internship Cell',
+      timestamp: '2026-10-26 14:19 IST',
+      mode: 'Offline Signature Check',
+      result: 'Valid Credential',
+    },
+    {
+      id: 'vlog-5',
+      credentialId: 'CRED-APAAR-2026-DB112',
+      studentId: 'DBIE-26-112',
+      studentName: 'Priya Nair',
+      institutionName: 'Dakshin Bharat Institute of Engineering',
+      verifierName: 'Anirudh Rao',
+      organization: 'Infosys Campus Recruitment Verification Sandbox',
+      timestamp: '2026-10-25 10:50 IST',
+      mode: 'Online Verification',
+      result: 'Valid Credential',
+    },
+    {
+      id: 'vlog-6',
+      credentialId: 'CRED-APAAR-2026-221962',
+      studentId: '221962',
+      studentName: 'Kabir Chawla',
+      institutionName: 'ABC Engineering College',
+      verifierName: 'Vikramaditya Sen',
+      organization: 'BharatTech Global Solutions Ltd.',
+      timestamp: '2026-10-24 17:30 IST',
+      mode: 'QR Payload Scan',
+      result: 'Valid Credential',
+    },
   ];
 
   const alerts: PlatformAlert[] = [
@@ -882,6 +1346,18 @@ export function buildInitialSeedDatabase(
     },
     {
       id: 'alt-3',
+      alertType: 'Duplicate APAAR Match Detected',
+      institutionId: 'inst-8',
+      institutionName: 'Deccan College of Cybernetics & Engineering',
+      programme: 'Data Science & Computational Engineering',
+      timestamp: '2026-10-29 09:48 IST',
+      severity: 'Critical',
+      description:
+        'Cross-state HMAC-SHA256 match detected between Deccan College (TS-26-819) and Vindhya National Institute (MP-26-401).',
+      targetRoute: '/duplicate-shield',
+    },
+    {
+      id: 'alt-4',
       alertType: 'Missing APAAR ID',
       institutionId: 'inst-5',
       institutionName: 'Eastern Himalayan Technical University',
@@ -893,7 +1369,7 @@ export function buildInitialSeedDatabase(
       targetRoute: '/apaar-validation',
     },
     {
-      id: 'alt-4',
+      id: 'alt-5',
       alertType: 'Institution Submission Pending',
       institutionId: 'inst-5',
       institutionName: 'Eastern Himalayan Technical University',
@@ -905,7 +1381,7 @@ export function buildInitialSeedDatabase(
       targetRoute: '/institutions',
     },
     {
-      id: 'alt-5',
+      id: 'alt-6',
       alertType: 'Student Information Mismatch',
       institutionId: 'inst-1',
       institutionName: 'ABC Engineering College',
@@ -928,7 +1404,7 @@ export function buildInitialSeedDatabase(
       entityReference: 'CYCLE-2026-27',
       timestamp: '2026-10-30 08:15 IST',
       status: 'Success',
-      details: 'Executed automated HMAC-SHA256 cross-institutional duplicate scan across 6 institutions.',
+      details: 'Executed automated HMAC-SHA256 cross-institutional duplicate scan across 10 institutions and 16 approved programmes.',
     },
     {
       id: 'aud-2',
@@ -973,6 +1449,39 @@ export function buildInitialSeedDatabase(
       timestamp: '2026-10-28 15:42 IST',
       status: 'Success',
       details: 'Verified Ed25519 signature and active student consent for CRED-APAAR-2026-221901.',
+    },
+    {
+      id: 'aud-6',
+      actionId: 'ACT-2026-9006',
+      userName: 'Dr. Rajeshwar Varma',
+      userRole: UserRole.AICTE_ADMIN,
+      action: 'Duplicate Case Resolved (Transfer Verified)',
+      entityReference: 'DUP-2026-1141',
+      timestamp: '2026-10-27 18:10 IST',
+      status: 'Success',
+      details: 'Verified official JoSAA withdrawal slip for Meera Subramanian (TN-26-198 -> OD-26-342).',
+    },
+    {
+      id: 'aud-7',
+      actionId: 'ACT-2026-9007',
+      userName: 'Prof. Meenakshi Iyer',
+      userRole: UserRole.INSTITUTE_ADMIN,
+      action: 'Supernumerary Quota Enrolment',
+      entityReference: '221962',
+      timestamp: '2026-10-26 12:05 IST',
+      status: 'Success',
+      details: 'Confirmed OCI Supernumerary seat allocation (2/5 occupied) for Kabir Chawla in Computer Science and Engineering.',
+    },
+    {
+      id: 'aud-8',
+      actionId: 'ACT-2026-9008',
+      userName: 'Rahul Sharma',
+      userRole: UserRole.STUDENT,
+      action: 'Consent Request Rejected',
+      entityReference: 'con-req-5',
+      timestamp: '2026-10-25 19:20 IST',
+      status: 'Warning',
+      details: 'Rejected third-party commercial data request from QuickLoan EdFin Services Pvt. Ltd.',
     },
   ];
 

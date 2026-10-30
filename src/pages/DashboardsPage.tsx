@@ -228,7 +228,7 @@ const AicteCentralDashboard: React.FC = () => {
             {totalInstitutions}
           </div>
           <div className="text-[11px] text-slate-500 mt-1">
-            6 States · 10 Approved Programmes
+            {new Set(institutions.map((i) => i.state)).size} States · {seatLedger.length} Approved Programmes
           </div>
         </div>
 
